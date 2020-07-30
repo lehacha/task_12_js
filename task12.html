@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function checkFields() 	
+		{ 
+			if(document.getElementById('UN').value == '' || document.getElementById("pwd").value == '') 
+		 		{
+		 			document.getElementById('send').disabled = true; 
+		 		}
+		 	else         
+		 		{
+		 		document.getElementById('send').disabled = false; 
+		 		}
+		} 
+		function handleSelect() 
+		{
+		 var sel = document.getElementById("city");  
+		 if(sel.selectedIndex == 0 || sel.selectedIndex == -1)   
+		 	document.getElementById('send2').disabled = true; 
+		 	else   document.getElementById('send2').disabled = false; 
+		 }
+		 function addToList() 
+		{  
+		if(document.getElementById('newElement').value != '') /*Якщо вміст текстового поля не пустий*/ 
+		 {   
+		 	var sel = document.getElementById('city');    
+			var newItem = new Option();/*Оголошення нового об’єкта типу «Елемент списку»*/   
+			newItem.text=document.getElementById('newElement').value; /*У властивість text нового елемента списку записуємо вміст текстового поля*/   
+			newItem.value=sel.options.length-1; /*У властивість value нового елемента списку записуємо його майбутній порядковий номер у списку */   
+			sel.add(newItem, sel.length); /*До списку додаємо визначений елемент на останню позицію */ 
+			} 
+		}
+		function deleteItem() 
+		{
+		  var sel = document.getElementById("city"); /* у змінну sel запишемо посилання на випадаючий список */  
+		  sel.remove(sel.selectedIndex); /* Видаляємо елемент, що є вибраним у списку на даний момент */    
+		  sel.selectedIndex = 0; /* Робимо вибраним елемент з індексом 0*/  
+		}
+		function red() 	
+		{ 
+			if(document.getElementById('UN2').value == '' || document.getElementById("pwd2").value == '') 
+		 		{
+		 			 document.getElementById('UN2').style.backgroundColor = "#ffcccc";
+		 			document.getElementById('pwd2').style.backgroundColor = "#ffcccc"; 
+		 		}
+		 	else         
+		 		{
+		 		document.getElementById('send').disabled = false; 
+		 		}
+		}
+		function foo()
+		{
+			document.getElementById("tb").style.display = "none";  
+			document.getElementById("tb3").style.visibility = "hidden"; 
+		}
+
+		
+	</script>
+</head>
+<body>
+<center>
+<div style="border: 2px solid black; width: 200px; padding: 10px; text-align: center; ">
+	<h3>SELECT</h3>
+	<select id="city"> 
+		<option>Виберіть місто</option> 
+		<option>Львів</option> 
+		<option>Київ</option> 
+		<option>Одеса</option>
+		<option>Харків</option>
+	</select> <br> <br>
+	<button id='send2' onclick="handleSelect()">Send</button>
+	<h3>ADDTOLIST</h3>
+	<input type="text" name='value' id='newElement'> <br> <br>
+	<button id='send2' onclick="addToList()">Add element</button>
+	<h3>DELETE</h3>
+	<button id='send2' onclick="deleteItem()">Delete element</button>
+</div>
+<div style="border: 2px solid black; width: 200px; padding: 10px; text-align: center; ">
+	<h3>CHECKFIELDS</h3>
+	<p>Name: <br></p>
+	<input type="text" name='UN2' id='UN2'>
+	<p> Password: <br> </p>
+	<input type="password" name='pwd2' id='pwd2'> <br> <br> <br>
+	<button id='send' onclick="red()">Send</button>
+</div>
+<div style="border: 2px solid black; width: 200px; padding: 10px; text-align: center; ">
+	<h3>DISPLAY-NONE OR HIDDEN</h3>
+	<table border="1">
+	<tr id='tb'>
+		<td>строка1 ячейка1</td>
+		<td>строка1 ячейка2</td>
+	</tr>
+	<tr>
+		<td>строка2 ячейка1</td>
+		<td>строка2 ячейка2</td>
+	</tr>
+	<tr id='tb3'>
+		<td>строка3 ячейка1</td>
+		<td>строка3 ячейка2</td>
+	</tr>
+	</table>
+	<br>
+	<button id='send' onclick="foo()">Send</button>
+</div>
+<div style="border: 2px solid black; width: 320px; padding: 10px; text-align: center; ">
+	<h3>CKECKBOX</h3>
+	<form id="form" onsubmit="return false">
+
+    Предотвратить действие по умолчанию для:
+    <label>
+      <input type="checkbox" name="keydownStop" value="1"> keydown</label>&nbsp;&nbsp;&nbsp;
+    <label>
+      <input type="checkbox" name="keypressStop" value="1"> keypress</label>&nbsp;&nbsp;&nbsp;
+    <label>
+      <input type="checkbox" name="keyupStop" value="1"> keyup</label>
+
+    <p>
+      Игнорировать:
+      <label>
+        <input type="checkbox" name="keydownIgnore" value="1"> keydown</label>&nbsp;&nbsp;&nbsp;
+      <label>
+        <input type="checkbox" name="keypressIgnore" value="1"> keypress</label>&nbsp;&nbsp;&nbsp;
+      <label>
+        <input type="checkbox" name="keyupIgnore" value="1"> keyup</label>
+    </p>
+
+    <p>Поле вписав в которое что-то вы можете посмотреть что за символ вы ввели</p>
+
+    <input type="text" placeholder="Клавиши нажимать тут" id="kinput"> <br> <br>
+
+    <textarea id="area"></textarea> <br> <br>
+    <input type="button" value="Очистить" onclick="area.value = '' ">
+
+  </form>
+<script src="func.js"></script>
+</div>
+</center>
+</body>
+</html>
